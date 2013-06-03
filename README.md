@@ -1,15 +1,15 @@
-# This is a new repository, because the original Author [schaermu](https://github.com/schaermu) didn't respond to any requests
+## This is a new repository, because the original Author [schaermu](https://github.com/schaermu) didn't respond to any requests to the [original repo](https://github.com/schaermu/node-fluent-ffmpeg)
 
-# Fluent ffmpeg-API for node.js [![Build Status](https://travis-ci.org/spruce/node-fluent-ffmpeg.png?branch=master)](https://travis-ci.org/spruce/node-fluent-ffmpeg)
+# Fluent ffmpeg-API for node.js [![Build Status](https://travis-ci.org/spruce/node-liquid-ffmpeg.png?branch=master)](https://travis-ci.org/spruce/node-liquid-ffmpeg)
 This library abstracts the complex command-line usage of ffmpeg into a fluent, easy to use node.js module. In order to be able to use this module, make sure you have [ffmpeg](http://www.ffmpeg.org) installed on your system (including all necessary encoding libraries like libmp3lame or libx264).
 
 Now including input streaming support (means you can convert **on-the-fly** using an input- and an outputstream)!
 ## Installation
 Via npm:
-`$ npm install fluent-ffmpeg`
+`$ npm install liquid-ffmpeg`
 
 Or as a submodule:
-`$ git submodule add git://github.com/schaermu/node-fluent-ffmpeg.git vendor/fluent-ffmpeg`
+`$ git submodule add git://github.com/spruce/node-liquid-ffmpeg.git vendor/liquid-ffmpeg`
 ## Tests
 To run unit tests, make sure have mocha installed on your system (registered as devDependency in npm config).
 
@@ -23,9 +23,9 @@ Make sure your ffmpeg installation is up-to-date to prevent strange assertion er
 ## Usage
 You find a lot of usage examples (including a real-time streaming example using [flowplayer](http://www.flowplayer.org) and [express](https://github.com/visionmedia/express)!) in the `examples` folder.
 ## Basics
-fluent-ffmpeg is always initialized using the returned class of your initial (and only) require call. You have to supply an config object to the constructor containing at least the input source (either a ReadableStream or a filepath).
+liquid-ffmpeg is always initialized using the returned class of your initial (and only) require call. You have to supply an config object to the constructor containing at least the input source (either a ReadableStream or a filepath).
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
 
     var proc = new ffmpeg({
       // input source, required
@@ -34,14 +34,14 @@ fluent-ffmpeg is always initialized using the returned class of your initial (an
       timeout: 30,
       // default priority for all ffmpeg sub-processes (optional, defaults to 0 which is no priorization)
       priority: 0,
-      // set a custom [winston](https://github.com/flatiron/winston) logging instance (optional, default null which will cause fluent-ffmpeg to spawn a winston console logger)
+      // set a custom [winston](https://github.com/flatiron/winston) logging instance (optional, default null which will cause liquid-ffmpeg to spawn a winston console logger)
       logger: null,
       // completely disable logging (optional, defaults to false)
       nolog: false
     });
 
 ### Auto-calculation of video dimensions
-Since ffmpeg does not support dynamic sizing of your movies, fluent-ffmpeg can do this job for you (using it's internal metadata-discovery). The following size formats are allowed to be passed to `withSize`:
+Since ffmpeg does not support dynamic sizing of your movies, liquid-ffmpeg can do this job for you (using it's internal metadata-discovery). The following size formats are allowed to be passed to `withSize`:
 
   * `320x?` - Fixed width, calculate height
   * `?x240` - Fixed height, calculate width
@@ -49,9 +49,9 @@ Since ffmpeg does not support dynamic sizing of your movies, fluent-ffmpeg can d
   * `320x240` - fixed size (plain ffmpeg way)
 
 ### Auto-padding when converting aspect ratio
-Using fluent-ffmpeg, you can auto-pad any video output when converting the aspect ratio. When converting from 4:3 to 16:9, padding is added to the left/right, when converting from 16:9 to 4:3, padding is added to top/bottom.
+Using liquid-ffmpeg, you can auto-pad any video output when converting the aspect ratio. When converting from 4:3 to 16:9, padding is added to the left/right, when converting from 16:9 to 4:3, padding is added to top/bottom.
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
 
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .withAspect('4:3')
@@ -63,9 +63,9 @@ Using fluent-ffmpeg, you can auto-pad any video output when converting the aspec
 This command will auto-pad your 4:3 output video stream using a white background-color (default is black).
 
 ### Simple conversion using preset
-This example loads up a predefined preset in the preset folder (currently, fluent-ffmpeg ships with presets for DIVX, Flashvideo and Podcast conversions)
+This example loads up a predefined preset in the preset folder (currently, liquid-ffmpeg ships with presets for DIVX, Flashvideo and Podcast conversions)
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
 
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .usingPreset('podcast')
@@ -75,7 +75,7 @@ This example loads up a predefined preset in the preset folder (currently, fluen
 ### Conversion using chainable API
 Using the chainable API, you are able to perform any operation using FFMPEG. the most common options are implemented using methods, for more advanced usages you can still use the `addOption(s)` method group.
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
     
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .withVideoBitrate(1024)
@@ -91,9 +91,9 @@ Using the chainable API, you are able to perform any operation using FFMPEG. the
         console.log('file has been converted succesfully');
       });
 ### Creating thumbnails from a video file
-One pretty neat feature is the ability of fluent-ffmpeg to generate any amount of thumbnails from your movies. The screenshots are taken at automatically determined timemarks using the following formula: `(duration_in_sec * 0.9) / number_of_thumbnails`.
+One pretty neat feature is the ability of liquid-ffmpeg to generate any amount of thumbnails from your movies. The screenshots are taken at automatically determined timemarks using the following formula: `(duration_in_sec * 0.9) / number_of_thumbnails`.
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
     
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .withSize('150x100')
@@ -104,7 +104,7 @@ One pretty neat feature is the ability of fluent-ffmpeg to generate any amount o
 
 For more control, you can also set the timemarks for taking screenshots yourself. Timemarks are percent `50%` or otherwise seconds.
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
     
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .withSize('150x100')
@@ -128,7 +128,7 @@ You can set the screenshots filename dynamically using following format characte
 
 If multiple timemarks are given and no `%i` format character is found in filename `_%i` will be added to the end of the given filename.
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
 
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .withSize('150x100')
@@ -144,7 +144,7 @@ If multiple timemarks are given and no `%i` format character is found in filenam
 ### Reading video metadata
 Using a seperate object, you are able to access various metadata of your video file.
 
-    var Metalib = require('fluent-ffmpeg').Metadata;
+    var Metalib = require('liquid-ffmpeg').Metadata;
 
     // make sure you set the correct path to your video file
     var metaObject = new Metalib('/path/to/your_movie.avi');
@@ -155,7 +155,7 @@ Using a seperate object, you are able to access various metadata of your video f
 ### Reading Codec information while processing
 Using the notification callback onCodecData, you can get informations about the input file's codecs being processed:
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
 
     var proc = new ffmpeg({ source: '/path/to/your_movie.avi' })
       .withAspect('4:3')
@@ -192,7 +192,7 @@ The progress object consists of 6 properties:
 ### Additional Inputs
 In case you need to add, for instance, and audio track
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
 
     var proc = new ffmpeg({ source: 'images/frame%05d.png' })
       .addInput('soundtrack.mp3')
@@ -207,13 +207,13 @@ To create a custom preset, you have to create a new file inside the `lib/presets
       // your custom preset code
     }
 
-The `ffmpeg` parameter is a full fluent-ffmpeg object, you can use all the chaining-goodness from here on. For a good example for the possibilities using presets, check out `lib/presets/podcast.js`.
+The `ffmpeg` parameter is a full liquid-ffmpeg object, you can use all the chaining-goodness from here on. For a good example for the possibilities using presets, check out `lib/presets/podcast.js`.
 
 
 ### Setting custom child process niceness
 You can adjust the scheduling priority of the child process used by ffmpeg, using renice (http://manpages.ubuntu.com/manpages/intrepid/man1/renice.1.html):
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
     
     var proc = new ffmpeg({ source: './source.mp3', priority: 10 })
       .withAudioCodec('libvorbis')
@@ -227,7 +227,7 @@ Which will use a niceness of 10 (thus it has a lower scheduling priority than th
 ### Setting an optional processing timeout
 If you want to know for sure that the ffmpeg child process will not run for longer than a certain amount of time, you can optionally pass the key 'timeout' into the constructor of the ffmpeg command object. An example of a process that will return an error string of 'timeout' if ffmpeg did not finish within 10 minutes:
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
     
     var proc = new ffmpeg({ source: './source.mp3', timeout: 10 * 60 })
       .withAudioCodec('libvorbis')

@@ -1,4 +1,4 @@
-var Registry = process.env.FLUENTFFMPEG_COV ? require('../lib-cov/registry') : require('../lib/registry');
+var Registry = process.env.LIQUIDFFMPEG_COV ? require('../lib-cov/registry') : require('../lib/registry');
 
 describe('Registry', function() {
   before(function() {

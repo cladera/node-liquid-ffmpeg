@@ -1,4 +1,4 @@
-var extlib = process.env.FLUENTFFMPEG_COV ? require('../lib-cov/extensions') : require('../lib/extensions'),
+var extlib = process.env.LIQUIDFFMPEG_COV ? require('../lib-cov/extensions') : require('../lib/extensions'),
   assert = require('assert');
 
 // kinda nasty...
