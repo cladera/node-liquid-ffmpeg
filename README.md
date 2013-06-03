@@ -203,7 +203,7 @@ In case you need to add, for instance, and audio track
 ### Concatenating Inputs
 To append a video to the end of another
 
-    var ffmpeg = require('fluent-ffmpeg');
+    var ffmpeg = require('liquid-ffmpeg');
     var proc = new ffmpeg({source: "title.mp4"})
         .mergeAdd("source.mp4")
         .mergeToFile("out.mp4", "myTempFolder/", function(){
