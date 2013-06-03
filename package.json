@@ -1,17 +1,38 @@
 {
-  "name": "fluent-ffmpeg",
-  "version": "1.3.3",
+  "name": "liquid-ffmpeg",
+  "version": "1.0.1",
   "description": "A fluent API to FFMPEG (http://www.ffmpeg.org)",
-  "keywords": [ "ffmpeg" ],
-  "author": "Stefan Schaermeli <schaermu@gmail.com>",
-  "bugs": {
-      "mail": "schaermu@gmail.com",
-      "url": "http://github.com/schaermu/node-fluent-ffmpeg/issues"
+  "keywords": [
+    "ffmpeg"
+  ],
+  "author": {
+    "name": "Spruce",
+    "email": "spruce@space-ships.de"
   },
-  "repository": "git://github.com/schaermu/node-fluent-ffmpeg.git",
-  "devDependencies": { "mocha": "latest", "should": "latest" },
-  "dependencies": { "winston": ">=0.5.10" },
-  "engines" : { "node" : ">=0.5.0" },
+  "contributors": [
+    {
+      "name": "Stefan Schaermeli",
+      "email": "schaermu@gmail.com"
+    }
+  ],
+  "bugs": {
+    "mail": "spruce@space-ships.de",
+    "url": "https://github.com/spruce/node-liquid-ffmpeg/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spruce/node-liquid-ffmpeg.git"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest"
+  },
+  "dependencies": {
+    "winston": ">=0.5.10"
+  },
+  "engines": {
+    "node": ">=0.5.0"
+  },
   "main": "index",
   "scripts": {
     "test": "make test"
