@@ -229,6 +229,7 @@ describe('Processor', function() {
             // check filesize to make sure conversion actually worked
             fs.stat(testFile, function(err, stats) {
               assert.ok(!err && stats);
+              console.log('stats:', stats);
               stats.size.should.above(0);
               stats.isFile().should.true;
               // unlink file
